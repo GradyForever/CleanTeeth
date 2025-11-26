@@ -1,4 +1,5 @@
 ﻿using CleanTeeth.Domain.Exceptions;
+using CleanTeeth.Domain.ValueObjects;
 
 namespace CleanTeeth.Domain.Entities;
 
@@ -11,21 +12,18 @@ public class Patient
 
     public string Name { get; private set; } = null!;
 
-    public string Email { get; private set; } = null!;
+    public Email Email { get; private set; } = null!;
 
-    public Patient(string name, string email)
+    public Patient(string name, Email email)
     {
         if (string.IsNullOrWhiteSpace(name))
         {
             throw new BusinessRuleException($"The {nameof(name)} is required.");
         }
-        if (string.IsNullOrWhiteSpace(email))
+        
+        if (email is null)
         {
             throw new BusinessRuleException($"The {nameof(email)} is required.");
-        }
-        if (!email.Contains("@") || !email.Contains("."))
-        {
-            throw new BusinessRuleException($"The {nameof(email)} format is invalid.");
         }
 
         Name = name;
