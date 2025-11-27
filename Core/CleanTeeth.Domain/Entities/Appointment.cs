@@ -35,6 +35,10 @@ public class Appointment
         Id = Guid.CreateVersion7();
     }
 
+    /// <summary>
+    /// 取消预约
+    /// </summary>
+    /// <exception cref="BusinessRuleException"></exception>
     public void Cancel()
     {
         if (Status != AppiontmentStatus.Scheduled)
@@ -45,6 +49,10 @@ public class Appointment
         Status = AppiontmentStatus.Canceled;
     }
 
+    /// <summary>
+    /// 完成预约
+    /// </summary>
+    /// <exception cref="BusinessRuleException"></exception>
     public void Complete()
     {
         if (Status != AppiontmentStatus.Scheduled)
