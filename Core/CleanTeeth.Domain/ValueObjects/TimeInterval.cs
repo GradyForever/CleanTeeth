@@ -1,4 +1,6 @@
-﻿namespace CleanTeeth.Domain.ValueObjects;
+﻿using CleanTeeth.Domain.Exceptions;
+
+namespace CleanTeeth.Domain.ValueObjects;
 
 public record TimeInterval
 {
@@ -8,7 +10,7 @@ public record TimeInterval
     {
         if (end <= start)
         {
-            throw new ArgumentException("End time must be after start time.");
+            throw new BusinessRuleException("End time must be after start time.");
         }
 
         Start = start;

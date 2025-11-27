@@ -1,4 +1,5 @@
 ﻿using CleanTeeth.Domain.Enums;
+using CleanTeeth.Domain.Exceptions;
 using CleanTeeth.Domain.ValueObjects;
 
 namespace CleanTeeth.Domain.Entities;
@@ -22,7 +23,7 @@ public class Appointment
     {
         if (timeInterval.Start < DateTime.Now)
         {
-            throw new ArgumentException("The start time can not be in the past.");
+            throw new BusinessRuleException("The start time can not be in the past.");
         }
 
         PatientId = patientId;
@@ -36,9 +37,9 @@ public class Appointment
 
     public void Cancel()
     {
-        if (Status == AppiontmentStatus.Scheduled)
+        if (Status != AppiontmentStatus.Scheduled)
         {
-            throw new InvalidOperationException("Only scheduled appointments can be canceled.");
+            throw new BusinessRuleException("Only scheduled appointments can be canceled.");
         }
 
         Status = AppiontmentStatus.Canceled;
@@ -48,7 +49,7 @@ public class Appointment
     {
         if (Status != AppiontmentStatus.Scheduled)
         {
-            throw new InvalidOperationException("Only scheduled appointments can be completed.");
+            throw new BusinessRuleException("Only scheduled appointments can be completed.");
         }
 
         Status = AppiontmentStatus.Completed;

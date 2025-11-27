@@ -5,6 +5,6 @@
   </Folder>
   <Folder Name="/Infrastructure/" />
   <Folder Name="/Tests/">
-    <Project Path="Tests/CleanTeeth.Domain.Tests/CleanTeeth.Domain.Tests.csproj" />
+    <Project Path="Tests/CleanTeeth.Domain.MSTests/CleanTeeth.Domain.MSTests.csproj" Id="d1bd7bc1-54b9-4694-b314-bd541397da90" />
   </Folder>
 </Solution>
